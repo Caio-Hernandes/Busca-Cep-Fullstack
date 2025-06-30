@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: #d9dbc6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,7 @@
   }
   
   .cep-card {
-    background: white;
+    background: #adb3ac;
     border-radius: 16px;
     padding: 40px;
     width: 100%;
@@ -48,7 +48,7 @@
     font-size: 16px;
     transition: border-color 0.2s ease;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: gray;
+    color: #2d3748;
   }
   
   .cep-input:focus,
@@ -56,7 +56,7 @@
   .city-input:focus,
   .state-input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #44756f;
   }
   
   .city-state-group {
@@ -67,7 +67,7 @@
   
   .search-button {
     padding: 12px;
-    background: #667eea;
+    background: #44756f;
     color: white;
     border: none;
     border-radius: 8px;
@@ -80,7 +80,7 @@
   }
   
   .search-button:hover {
-    background: #5a67d8;
+    background: #3b6d67;
   }
   
   /* Responsividade */
