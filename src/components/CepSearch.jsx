@@ -1,6 +1,6 @@
 // components/CepSearch.js - Página de busca e cadastro
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './CepSearch.css';
 
 const URL = 'https://viacep.com.br/ws/';
@@ -11,6 +11,20 @@ const CepSearch = () => {
   const [info, setInfo] = useState({});
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  // Função para pegar o token do localStorage
+  const getAuthToken = () => {
+    return localStorage.getItem('token');
+  };
+
+  // Verificar se usuário está logado
+  useEffect(() => {
+    const token = getAuthToken();
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   // Buscar CEP na API externa
   const handleBlur = async () => {
@@ -42,12 +56,20 @@ const CepSearch = () => {
       return;
     }
 
+    const token = getAuthToken();
+    if (!token) {
+      setMessage('Você precisa estar logado');
+      navigate('/login');
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await fetch(`${API_URL}/ceps`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` //jwt fortíssimo
         },
         body: JSON.stringify({
           cep: info.cep,
@@ -65,7 +87,15 @@ const CepSearch = () => {
         setCep('');
         setInfo({});
       } else {
-        setMessage(data.error || 'Erro ao cadastrar CEP');
+        // Se token expirou ou é inválido
+        if (response.status === 401) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          setMessage('Sessão expirada. Faça login novamente');
+          navigate('/login');
+        } else {
+          setMessage(data.error || 'Erro ao cadastrar CEP');
+        }
       }
     } catch (error) {
       setMessage('Erro ao conectar com o servidor');

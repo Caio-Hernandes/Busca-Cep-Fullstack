@@ -1,6 +1,6 @@
 // components/CepList.js - Página de listagem
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './CepList.css';
 
 const API_URL = 'http://localhost:3001/api';
@@ -9,14 +9,50 @@ const CepList = () => {
   const [savedCeps, setSavedCeps] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  // Função para pegar o token do localStorage
+  const getAuthToken = () => {
+    return localStorage.getItem('token');
+  };
+
+  // Verificar se usuário está logado
+  useEffect(() => {
+    const token = getAuthToken();
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   // Carregar CEPs salvos
   const loadSavedCeps = async () => {
+    const token = getAuthToken();
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
     setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/ceps`);
-      const data = await response.json();
-      setSavedCeps(data);
+      const response = await fetch(`${API_URL}/ceps`, {
+        headers: {
+          'Authorization': `Bearer ${token}` // ← AQUI está o token JWT!
+        },
+        credentials: 'include'
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setSavedCeps(data);
+      } else if (response.status === 401) {
+        // Token expirado ou inválido
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setMessage('Sessão expirada. Faça login novamente');
+        navigate('/login');
+      } else {
+        setMessage('Erro ao carregar CEPs');
+      }
     } catch (error) {
       setMessage('Erro ao carregar CEPs');
       console.error('Erro ao carregar CEPs:', error);
@@ -30,14 +66,29 @@ const CepList = () => {
       return;
     }
 
+    const token = getAuthToken();
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
     try {
       const response = await fetch(`${API_URL}/ceps/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}` //jwt lindao
+        }
       });
 
       if (response.ok) {
         setMessage('CEP removido com sucesso!');
         loadSavedCeps(); // Recarregar lista
+      } else if (response.status === 401) {
+        // Token expirado ou inválido
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setMessage('Sessão expirada. Faça login novamente');
+        navigate('/login');
       } else {
         setMessage('Erro ao remover CEP');
       }

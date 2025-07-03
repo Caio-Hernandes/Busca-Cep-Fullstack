@@ -1,12 +1,14 @@
 -- CreateTable
 CREATE TABLE "ceps" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "cep" TEXT NOT NULL,
     "logradouro" TEXT NOT NULL,
     "localidade" TEXT NOT NULL,
     "uf" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "ceps_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
