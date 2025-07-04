@@ -65,7 +65,7 @@ const CepSearch = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/ceps`, {
+      const response = await fetch(`${API_URL}/api/ceps`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ const CepSearch = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage('CEP cadastrado com sucesso!');
+        setMessage('CEP cadastrado com sucesso!')
         // Limpar formulário
         setCep('');
         setInfo({});
