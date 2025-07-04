@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './CepSearch.css';
 
 const URL = 'https://viacep.com.br/ws/';
-const API_URL = 'https://busca-cep-fullstack.onrender.com';
+const API_URL = 'https://busca-cep-fullstack.onrender.com/api';
 
 const CepSearch = () => {
   const [cep, setCep] = useState('');
@@ -65,7 +65,7 @@ const CepSearch = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/api/ceps`, {
+      const response = await fetch(`${API_URL}/ceps`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
