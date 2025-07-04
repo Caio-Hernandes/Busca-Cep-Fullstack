@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './CepSearch.css';
 
 const URL = 'https://viacep.com.br/ws/';
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://busca-cep-fullstack.onrender.com';
 
 const CepSearch = () => {
   const [cep, setCep] = useState('');

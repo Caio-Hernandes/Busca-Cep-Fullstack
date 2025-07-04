@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './CepList.css';
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://busca-cep-fullstack.onrender.com';
 
 const CepList = () => {
   const [savedCeps, setSavedCeps] = useState([]);
