@@ -34,7 +34,7 @@ const CepList = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`${API_URL}ceps`, {
+      const response = await fetch(`${API_URL}/ceps`, {
         headers: {
           'Authorization': `Bearer ${token}` // ← AQUI está o token JWT!
         },
