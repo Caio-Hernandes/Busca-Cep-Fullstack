@@ -84,10 +84,8 @@ function App() {
             } />
             
             <Route path="/lista" element={
-              <PrivateRoute>
-                <CepList user={user} />
-              </PrivateRoute>
-            } />
+  isLoggedIn ? <CepList user={user} /> : <Navigate to="/login" />
+} />
             
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
