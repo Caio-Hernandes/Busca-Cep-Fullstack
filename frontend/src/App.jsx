@@ -4,8 +4,10 @@ import CepSearch from './components/CepSearch.jsx';
 import CepList from './components/CepList.jsx';
 import LoginForm from './components/LoginForm.jsx';
 import RegisterForm from './components/RegisterForm.jsx';
-import PrivateRoute from './components/PrivateRoute.jsx'; // Seu componente existente
 import './App.css';
+
+// Importe seu componente PrivateRoute existente
+import PrivateRoute from './components/PrivateRoute.jsx'; // ou o caminho correto
 
 // Componente separado para navbar (para usar useNavigate)
 const Navbar = ({ isLoggedIn, user, onLogout }) => {
@@ -15,7 +17,7 @@ const Navbar = ({ isLoggedIn, user, onLogout }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     onLogout(); // Atualiza o estado no App
-    navigate('/login'); // ✅ Usa navigate ao invés de window.location.href
+    navigate('/login'); // Usa navigate ao invés de window.location.href
   };
 
   return (
@@ -56,9 +58,25 @@ function App() {
 
   // Função para atualizar o estado de autenticação
   const updateAuthStatus = () => {
-    setIsLoggedIn(!!localStorage.getItem('token'));
-    setUser(JSON.parse(localStorage.getItem('user') || 'null'));
+    const newLoginStatus = !!localStorage.getItem('token');
+    const newUser = JSON.parse(localStorage.getItem('user') || 'null');
+    
+    setIsLoggedIn(newLoginStatus);
+    setUser(newUser);
+    
+    // Force re-render para garantir que mudanças sejam aplicadas
+    console.log('Estado atualizado:', { isLoggedIn: newLoginStatus, user: newUser });
   };
+
+  // Escuta mudanças no localStorage (para casos de logout em outras abas)
+  useEffect(() => {
+    const handleStorageChange = () => {
+      updateAuthStatus();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   return (
     <Router>
@@ -84,9 +102,10 @@ function App() {
             } />
             
             <Route path="/lista" element={
-  isLoggedIn ? <CepList user={user} /> : <Navigate to="/login" />
-} />
+              isLoggedIn ? <CepList user={user} /> : <Navigate to="/login" />
+            } />
             
+            {/* Redirecionamento para páginas não encontradas */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
