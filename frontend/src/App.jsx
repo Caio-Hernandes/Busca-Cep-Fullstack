@@ -29,11 +29,13 @@ function App() {
   };
 
   // Função para logout
-  const handleLogout = () => {
+ const handleLogout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
-  updateAuthStatus();
-  window.location.href = '/login'; // força reload e redireciona
+  setIsLoggedIn(false); // Força o estado para false
+  setUser(null); // Limpa o usuário
+  navigate('/login', { replace: true }); // Navega substituindo o histórico
+  window.location.reload(); // Recarrega a página para garantir limpeza
 };
 
   return (
