@@ -33,7 +33,7 @@ function App() {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
   updateAuthStatus();
-  window.location.href = '/login'; // força reload e redireciona
+  navigate('/login') // força reload e redireciona
 };
 
   return (
