@@ -66,7 +66,7 @@
 
 /* Card individual do CEP */
 .cep-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgb(255, 0, 0);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   padding: 1.5rem;
@@ -93,7 +93,7 @@
 .cep-number {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #007bff;
+  color: #827bff;
   background: rgba(0, 123, 255, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 25px;
@@ -101,7 +101,7 @@
 
 /* Botão de deletar */
 .delete-btn {
-  background: #dc3545;
+  background: #b43c48;
   color: white;
   border: none;
   width: 40px;
@@ -135,7 +135,7 @@
 }
 
 .detail-row strong {
-  color: #333;
+  color: #ffffff;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -143,20 +143,21 @@
 }
 
 .detail-row span {
-  color: #555;
+  color: rgba(255, 255, 255, 0.493);
   font-size: 1rem;
   font-weight: 500;
 }
 
 /* Estatísticas */
 .stats {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 254, 251, 0.95);
   backdrop-filter: blur(10px);
   padding: 1.5rem;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
+ 
 }
 
 .stats p {
@@ -165,7 +166,7 @@
 }
 
 .stats strong {
-  color: #007bff;
+  color: #827bff;
   font-size: 1.3rem;
 }
 
@@ -217,4 +218,10 @@
   .empty-state h3 {
     font-size: 1.5rem;
   }
+}
+.back-button{
+  color:white
+}
+.cta-button{
+  color:black;
 }

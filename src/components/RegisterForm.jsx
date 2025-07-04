@@ -49,18 +49,21 @@ function RegisterForm({ onRegisterSuccess }) {
   };
 
   return (
-    <div className="auth-container">
-      <h2>Cadastro</h2>
+  <div className="auth-container">
+    <h1 className="welcome-title">Faça seu cadastro</h1>
+
+    <div className="auth-card">
+      <h2 className="auth-title">Cadastro</h2>
       <form onSubmit={handleSubmit} className="auth-form">
         <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Nome completo"
-          required
-          disabled={isLoading}
-        />
+        type="name"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Nome"
+        required
+        disabled={isLoading}
+      />
         <input
           type="email"
           name="email"
@@ -87,11 +90,12 @@ function RegisterForm({ onRegisterSuccess }) {
           className="auth-button"
           disabled={isLoading}
         >
-          {isLoading ? 'Cadastrando...' : 'Cadastrar'}
+          {isLoading ? 'Carregando...' : 'Entrar'}
         </button>
       </form>
     </div>
-  );
+  </div>
+);
 }
 
 export default RegisterForm;

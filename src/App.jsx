@@ -41,42 +41,32 @@ function App() {
       <div className="App">
         {/* Navbar */}
         <nav className="navbar">
-          <div className="nav-container">
-            <h1 className="nav-title">Sistema de CEP</h1>
-            <div className="nav-links">
-              <Link to="/" className="nav-link">
-                Buscar CEP
-              </Link>
-              
-              {/* Mostra link para lista apenas se autenticado */}
-              {isLoggedIn && (
-                <Link to="/lista" className="nav-link">
-                  Meus CEPs
-                </Link>
-              )}
+         <div className="nav-container">
+  <h1 className="nav-title">Sistema de CEP</h1>
+  
+  <div className="nav-right">
+    <div className="nav-links">
+      <Link to="/" className="nav-link">Buscar CEP</Link>
+      {isLoggedIn && (
+        <Link to="/lista" className="nav-link">Meus CEPs</Link>
+      )}
+    </div>
 
-              {/* Mostra links de login/logout condicionalmente */}
-              <div className="auth-links">
-                {isLoggedIn ? (
-                  <>
-                    <span className="nav-user">Olá, {user?.name}</span>
-                    <button onClick={handleLogout} className="nav-link logout-btn">
-                      Sair
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Link to="/login" className="nav-link">
-                      Entrar
-                    </Link>
-                    <Link to="/register" className="nav-link">
-                      Cadastrar
-                    </Link>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
+    <div className="auth-links">
+      {isLoggedIn ? (
+        <>
+          <span className="nav-user">Olá, {user?.name}</span>
+          <button onClick={handleLogout} className="nav-link logout-btn">Sair</button>
+        </>
+      ) : (
+        <>
+          <Link to="/login" className="nav-link">Entrar</Link>
+          <Link to="/register" className="nav-link">Cadastrar</Link>
+        </>
+      )}
+    </div>
+  </div>
+</div>
         </nav>
 
         {/* Rotas */}

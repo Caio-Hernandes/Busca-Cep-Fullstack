@@ -53,39 +53,47 @@ function LoginForm({ onLoginSuccess }) {
   };
 
   return (
+    
+
+    
     <div className="auth-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit} className="auth-form">
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email"
-          required
-          disabled={isLoading}
-        />
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Senha"
-          required
-          disabled={isLoading}
-        />
-        
-        {error && <p className="error-message">{error}</p>}
-        
-        <button 
-          type="submit" 
-          className="auth-button"
-          disabled={isLoading}
-        >
-          {isLoading ? 'Carregando...' : 'Entrar'}
-        </button>
-      </form>
-    </div>
+      <h1 className="welcome-title">Bem-vindo de volta 👋</h1>
+  <div className="auth-card">
+    <h2 className="auth-title">Login</h2>
+    <form onSubmit={handleSubmit} className="auth-form">
+       
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Email"
+        required
+        disabled={isLoading}
+      />
+      <input
+        type="password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        placeholder="Senha"
+        required
+        disabled={isLoading}
+      />
+      
+      {error && <p className="error-message">{error}</p>}
+      
+      <button 
+        type="submit" 
+        className="auth-button"
+        disabled={isLoading}
+      >
+        {isLoading ? 'Carregando...' : 'Entrar'}
+      </button>
+    </form>
+  </div>
+</div>
+
   );
 }
 

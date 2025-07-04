@@ -165,7 +165,7 @@ const CepSearch = () => {
               onClick={handleCadastrar}
               disabled={loading || !info.cep}
             >
-              {loading ? 'Cadastrando...' : 'Cadastrar'}
+              {loading ? 'Buscando...' : 'Cadastrar'}
             </button>
             
             <Link to="/lista" className="list-button">

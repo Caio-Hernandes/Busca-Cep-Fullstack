@@ -1,99 +1,157 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+.cep-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 12px;
+}
+
+.cep-card {
+  background-color: #111720be !important; /* Card cinza escuro */
+  border-radius: 16px !important;
+  padding: 40px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 32px;
+  text-align: center;
+  color:white;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cep-input,
+.address-input,
+.city-input,
+.state-input {
+  padding: 12px 16px;
+  background-color: #2a2a2a; /* Input escuro */
+  border: 1px solid #3b48f642; /* Azul suave */
+  border-radius: 8px;
+  font-size: 16px;
+  color: #ffffff; /* Texto branco */
+  transition: border-color 0.2s ease;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  
+}
+
+.cep-input::placeholder,
+.address-input::placeholder,
+.city-input::placeholder,
+.state-input::placeholder {
+  color: #888; /* Placeholder claro */
+}
+
+.cep-input:focus,
+.address-input:focus,
+.city-input:focus,
+.state-input:focus {
+  outline: none;
+  border-color: #6360fa; /* Azul mais claro no foco */
+}
+
+.city-state-group {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.search-button {
+  padding: 12px;
+  background: #6c63ff; /* Azul principal */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  gap: 1rem;
+  padding: 12px;
 }
 
 
-.cep-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background: #d9dbc6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-  }
+.search-button:hover {
+  background: #827bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.4);
   
+}
+
+.list-button {
+  padding: 12px;
+  text-align: center;
+  background: #6c63ff;
+  color: white;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  flex-direction: column;
+}
+
+.list-button:hover {
+ background: #827bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.4);
+}
+
+/* Mensagem de sucesso e erro */
+.message {
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.success {
+  background-color: #16a34a;
+  color: #e6ffe6;
+}
+
+.error {
+  background-color: #dc2626;
+  color: #ffe6e6;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
   .cep-card {
-    background: #adb3ac;
-    border-radius: 16px;
-    padding: 40px;
-    width: 100%;
-    max-width: 480px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 24px;
   }
-  
-  .title {
-    font-size: 24px;
-    font-weight: 600;
-    color: #2d3748;
-    margin-bottom: 32px;
-    text-align: center;
-  }
-  
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .cep-input,
-  .address-input,
-  .city-input,
-  .state-input {
-    padding: 12px 16px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.2s ease;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #2d3748;
-  }
-  
-  .cep-input:focus,
-  .address-input:focus,
-  .city-input:focus,
-  .state-input:focus {
-    outline: none;
-    border-color: #44756f;
-  }
-  
+
   .city-state-group {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr;
   }
-  
-  .search-button {
-    padding: 12px;
-    background: #44756f;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    text-transform: uppercase;
-    font-weight: bold;
+
+  .title {
+    font-size: 20px;
   }
-  
-  .search-button:hover {
-    background: #3b6d67;
-  }
-  
-  /* Responsividade */
-  @media (max-width: 480px) {
-    .cep-card {
-      padding: 24px;
-    }
-    
-    .city-state-group {
-      grid-template-columns: 1fr;
-    }
-    
-    .title {
-      font-size: 20px;
-    }
-  }
+}
