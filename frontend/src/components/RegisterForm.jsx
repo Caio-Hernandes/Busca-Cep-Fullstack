@@ -90,7 +90,7 @@ function RegisterForm({ onRegisterSuccess }) {
           className="auth-button"
           disabled={isLoading}
         >
-          {isLoading ? 'Carregando...' : 'Entrar'}
+          {isLoading ? 'Carregando...' : 'Cadastrar'}
         </button>
       </form>
     </div>
