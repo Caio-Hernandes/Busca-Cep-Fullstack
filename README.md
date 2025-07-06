@@ -1,12 +1,39 @@
-# React + Vite
+Sistema de Busca e Cadastro de CEPs
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação fullstack que permite buscar informações de CEPs brasileiros utilizando uma API pública e salvar os resultados para consulta futura. Conta com sistema de autenticação, frontend em React e backend em Node.js com banco PostgreSQL.
 
-Currently, two official plugins are available:
+ Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Cadastro e login de usuários com autenticação via JWT
+-  Busca de CEPs por meio da API ViaCEP
+-  Salvamento dos CEPs pesquisados no banco de dados
+-  Listagem personalizada dos CEPs salvos por usuário
+-  Interface responsiva e limpa
 
-## Expanding the ESLint configuration
+ Tecnologias Utilizadas
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Backend
+- Node.js
+- Express
+- Prisma ORM
+- PostgreSQL
+- JWT para autenticação
+
+Frontend
+- React.js (Vite)
+- CSS
+- Consumo de APIs via Fetch
+
+ Deploy
+- Backend e frontend hospedados na Render
+- Banco de dados no Railway
+
+ Créditos
+Odair Michael — estrutura inicial do formulário de busca (frontend)
+
+Caio Hernandes — backend completo, banco de dados, autenticação, estilização e deploy
+
+
+
+
+
