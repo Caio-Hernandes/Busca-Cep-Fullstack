@@ -24,6 +24,9 @@ app.use(cors({
 
 app.use(express.json());
 
+console.log("Banco conectado:", process.env.DATABASE_URL)
+
+
 // tava tendo uns problemas com o token no backend
 app.use((req, res, next) => {
   console.log(`\n🔄 ${req.method} ${req.url}`);
