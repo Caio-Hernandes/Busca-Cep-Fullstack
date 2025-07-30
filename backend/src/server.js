@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3001;
 const allowedOrigins = [
   'http://localhost:5173',
   'https://busca-cep-fullstack-1.onrender.com',
+  'http://localhost:3001',
 ];
 
 
@@ -19,13 +20,19 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Permite requisições sem origin (Postman, mobile apps)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      console.log('❌ Origin bloqueada:', origin);
+      callback(new Error('Não permitido pelo CORS'));
     }
   },
-  credentials: true,
+  credentials: true, // 🔥 ADICIONE ESTA LINHA
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
