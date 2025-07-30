@@ -14,23 +14,20 @@ model User {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
-  // Relacionamento com CEPs (se você quiser)
   ceps      Cep[]
 }
 
 model Cep {
   id         Int      @id @default(autoincrement())
-  cep        String   
+  cep        String
   logradouro String
   localidade String
   uf         String
-  userId     String   
-  user       User     @relation(fields: [userId], references: [id])
+  userId     String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id])
 
-  
   @@unique([cep, userId])
   @@map("ceps")
 }

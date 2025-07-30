@@ -7,27 +7,32 @@ const cepRoutes = require('./routes/cepRoutes');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({
-  origin: ['http://localhost:5173',
-  'https://busca-cep-fullstack-1.onrender.com'],
-  credentials: true,
-  allowedHeaders: [
-    'Content-Type', 
-    'Authorization',
-    'X-Requested-With',
-    'Accept'
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  optionsSuccessStatus: 200
-}));
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://busca-cep-fullstack-1.onrender.com',
+];
 
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
 
 app.use(express.json());
 
-console.log("Banco conectado:", process.env.DATABASE_URL)
+console.log("Banco conectado:", process.env.DATABASE_URL);
 
-
-// tava tendo uns problemas com o token no backend
+// Middleware para debug
 app.use((req, res, next) => {
   console.log(`\n🔄 ${req.method} ${req.url}`);
   if (req.headers.authorization) {
@@ -40,7 +45,6 @@ app.use((req, res, next) => {
 
 app.use('/api', cepRoutes);
 
-// Rota de teste
 app.get('/', (req, res) => {
   res.json({ message: 'API CEP funcionando!' });
 });
