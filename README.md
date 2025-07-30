@@ -28,6 +28,8 @@ Frontend
 - Backend e frontend hospedados na Render
 - Banco de dados no Railway
 
+*Infra migrada da Railway para Supabase devido a limitações de uso gratuito. Projeto atualizado com pooling ativo via Supavisor, garantindo estabilidade para testes por recrutadores.*
+
  Créditos
 Odair Michael — estrutura inicial do formulário de busca (frontend)
 
