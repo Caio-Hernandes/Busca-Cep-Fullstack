@@ -26,11 +26,11 @@ app.use(cors({
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      console.log('❌ Origin bloqueada:', origin);
+      console.log('Origin bloqueada:', origin);
       callback(new Error('Não permitido pelo CORS'));
     }
   },
-  credentials: true, // 🔥 ADICIONE ESTA LINHA
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -43,9 +43,9 @@ console.log("Banco conectado:", process.env.DATABASE_URL);
 app.use((req, res, next) => {
   console.log(`\n🔄 ${req.method} ${req.url}`);
   if (req.headers.authorization) {
-    console.log('✅ Authorization header presente!');
+    console.log('Authorization header presente!');
   } else {
-    console.log('❌ Authorization header AUSENTE!');
+    console.log('Authorization header AUSENTE!');
   }
   next();
 });
