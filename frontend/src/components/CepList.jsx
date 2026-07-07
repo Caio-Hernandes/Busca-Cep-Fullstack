@@ -36,7 +36,7 @@ const CepList = () => {
     try {
       const response = await fetch(`${API_URL}/ceps`, {
         headers: {
-          'Authorization': `Bearer ${token}` // ← AQUI está o token JWT!
+          'Authorization': `Bearer ${token}` //token
         },
         credentials: 'include'
       });
