@@ -25,7 +25,7 @@ const cepController = {
       const userId = req.userId;
       const { cep, logradouro, localidade, uf } = req.body;
 
-      // ✅ CORREÇÃO: Verificar se CEP já existe para este usuário
+      //Verificar se CEP já existe para este usuário
       const cepExists = await prisma.cep.findFirst({
         where: { 
           cep: cep,
@@ -60,7 +60,7 @@ const cepController = {
       const { id } = req.params;
       const userId = req.userId;
 
-      // ✅ CORREÇÃO: Verificar se o CEP pertence ao usuário logado
+      //Verificar se o CEP pertence ao usuário logado
       const cep = await prisma.cep.findFirst({
         where: { 
           id: parseInt(id),
